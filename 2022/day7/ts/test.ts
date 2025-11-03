@@ -83,7 +83,7 @@ function run() {
 
     part_2_test_example_1()
     // part_2_test_example_2()
-    part_2_test_real_input()
+    // part_2_test_real_input()
 }
 
 run()

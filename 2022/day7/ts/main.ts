@@ -66,19 +66,30 @@ export default {
                 }
             }
         }
-
+        console.log(directory_hashmap);
+        
         let space_left = total_disk_space - directory_hashmap["."]
         let space_needed_for_update = update_size - space_left
         
         let values = Object.values(directory_hashmap)
         let smallest = Infinity
         values.forEach(element => {
-            if (Math.abs(space_needed_for_update - element) < Math.abs(space_needed_for_update - smallest)) {
+            // console.log(space_needed_for_update + element);
+            // console.log(space_needed_for_update + element > update_size);
+            // console.log(space_left + 24933642);
+            // console.log(update_size);
+            
+            
+            // if (space_left + element > update_size && element < smallest) {
+            //     // console.log(element);
                 
-                smallest = element
-            }
+            //     // if (space_needed_for_update - element <= 0 && space_needed_for_update - element < Math.abs(space_needed_for_update - smallest)) {
+                
+            //     smallest = element
+            // }
         });
         
+        // console.log(space_needed_for_update);
         return smallest
     }
 };

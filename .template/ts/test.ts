@@ -17,7 +17,7 @@ function getFile(filepath:string) {
 let file = getFile('example.txt');
 function part_1_test_example_1() {
     let example = file
-    let expected = 13
+    let expected = 5
     let result = part1(example);
     if (result == expected) {
         console.log("PASSED: part 1 returned " + result);   
@@ -72,12 +72,12 @@ function part_2_test_real_input() {
 
 function run() {
     part_1_test_example_1()
-    // part_1_test_example_2()
+    part_1_test_example_2()
     part_1_test_real_input()
 
-    // part_2_test_example_1()
-    // part_2_test_example_2()
-    // part_2_test_real_input()
+    part_2_test_example_1()
+    part_2_test_example_2()
+    part_2_test_real_input()
 }
 
 run()
