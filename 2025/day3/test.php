@@ -39,13 +39,17 @@ function part_1_test_real_input()
 function part_2_test_example_1()
 {
     global $file;
-    $expected = 5;
+    $expected = 3121910778619;
     $result = part2($file);
 
     if ($result == $expected) {
         echo "PASSED: part 2 returned $result\n";
     } else {
-        echo "FAILED: part 2 returned $result instead of $expected\n";
+        if ($result > $expected) {
+            echo "FAILED: part 2 returned $result instead of $expected\n $result > $expected \n";
+        } else {
+            echo "FAILED: part 2 returned $result instead of $expected\n $result < $expected \n";
+        }
     }
 }
 function part_2_test_real_input()
