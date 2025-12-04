@@ -1,40 +1,67 @@
 <?php
 
 namespace AdventOfCode\Template;
-function part1($file):int {
+
+function part1($file): int
+{
     $rows = explode("\n", $file);
     $accessable = 0;
-    for ($y=0; $y < count($rows)-1; $y++) { 
-        $width = strlen($rows[$y])-1;
-        for ($x=0; $x < $width; $x++) {
-            $toiletpaper = 0;
-            $directions = [
-                [-1,1], [0,1],  [1,1],
-                [-1,0],         [1,0],
-                [-1,-1], [0,-1],[1,-1]
-            ];
+    // $toiletpaper = [];
+    for ($y = 0; $y < count($rows); $y++) {
+        $width = strlen($rows[$y]);
+        for ($x = 0; $x < $width; $x++) {
+            $tp = 0;
 
-            foreach ($directions as [$dirX, $dirY]) {
-                $neighbourX = $dirX + $x;
-                $neighbourY = $dirY + $y;
+            if ($y - 1 >= 0) {
+                $tp += $rows[$y - 1][$x] == "@" ? 1 : 0;
 
-                if (
-                    $neighbourY >= 0 && $neighbourY <= count($rows) && $neighbourX >= 0 && $neighbourX <= $width
-                ) {
-                    if ($rows[$neighbourY][$neighbourX] == "@") {
-                        $toiletpaper++;
-                    }
+                if ($x - 1 >= 0) {
+                    $tp += $rows[$y - 1][$x - 1] == "@" ? 1 : 0;
+                }
+
+                if ($x + 1 <= $width) {
+                    $tp += $rows[$y - 1][$x + 1] == "@" ? 1 : 0;
                 }
             }
 
-            if ($toiletpaper < 4) {
-                $accessable = $accessable+1;
+            if ($y + 1 <= count($rows) - 1) {
+                $tp += $rows[$y + 1][$x] == "@" ? 1 : 0;
+
+                if ($x - 1 >= 0) {
+                    $tp += $rows[$y + 1][$x - 1] == "@" ? 1 : 0;
+                }
+
+                if ($x + 1 <= $width) {
+                    $tp += $rows[$y + 1][$x + 1] == "@" ? 1 : 0;
+                }
+            }
+
+            if ($x - 1 >= 0) {
+                $tp += $rows[$y][$x - 1] == "@" ? 1 : 0;
+            }
+            if ($x + 1 <= $width) {
+                $tp += $rows[$y][$x + 1] == "@" ? 1 : 0;
+            }
+
+
+            if ($rows[$y][$x] == "@" && $tp < 4) {
+                // array_push($toiletpaper, [$x, $y]);
+                $accessable++;
             }
         }
     }
+    // var_dump($toiletpaper);
+    // foreach ($toiletpaper as $coords) {
+    //     list($x, $y) = $coords;
+    //     $rows[$y][$x] = "X";
+    // }
+
+    // $newFile = implode("\n", $rows);
+    // var_dump($newFile);
     return $accessable;
 }
 
-function part2($file):int {
+function part2($file): int
+{
     return 0;
 }
