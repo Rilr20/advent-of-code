@@ -39,7 +39,7 @@ function part_1_test_real_input()
 function part_2_test_example_1()
 {
     global $file;
-    $expected = 5;
+    $expected = 14;
     $result = part2($file);
 
     if ($result == $expected) {
